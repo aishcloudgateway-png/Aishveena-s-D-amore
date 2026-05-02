@@ -150,19 +150,22 @@ body {
 
 /* Cursor: desktop only */
 @media (pointer: fine) {
-  body { cursor: none; }
-}
-#cur, #crr { display: none; }
-@media (pointer: fine) {
-  #cur { display: block; position: fixed; width: 8px; height: 8px; background: var(--g1); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .25s, height .25s; }
-  #crr { display: block; position: fixed; width: 32px; height: 32px; border: 1px solid rgba(201,168,76,.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, opacity .3s; }
-  #cur.big { width: 18px; height: 18px; }
-  #crr.big { width: 50px; height: 50px; opacity: .8; }
-}
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-thumb { background: var(--g1); }
+  /* Allow typing cursor ONLY in inputs */
+  input, textarea, [contenteditable="true"] {
+    cursor: text !important;
+  }
 
+  /* 🚫 Disable text selection on normal content */
+  body, p, h1, h2, h3, h4, h5, h6, span, div {
+    user-select: none;
+  }
+
+  /* ✅ Allow selection ONLY where needed */
+  input, textarea, [contenteditable="true"] {
+    user-select: text;
+  }
+}
 /* ═══════════════════════════════════════
    NAVIGATION
 ═══════════════════════════════════════ */
@@ -190,7 +193,7 @@ nav.sc {
   text-decoration: none;
   /* Touch target */
   min-height: var(--touch-target);
-  display:inline-flex; gap: 10px ; align-items: center;
+  display:inline-flex; gap: 10px; align-items: center;
 }
 
 /* nav .logo {
@@ -932,7 +935,7 @@ footer { border-top: 1px solid var(--card-border); padding: 56px 64px 36px; back
     <div class="ss rvl">
       <div class="slb">Our Services</div>
       <h2>What We <span class="gt">Deliver</span></h2>
-      <p>A comprehensive suite of services to build, grow and sustain your brand — across physical and digital spaces alike.</p>
+      <p>A comprehensive suite of services to build, grow, and sustain your brand — across physical and digital spaces alike.</p>
     </div>
     <div class="slist">
       <div class="si rv" style="transition-delay:.3s"><div class="si-ico">🏨</div><div><h3>Hotel Undertaking</h3><p>Struggling to grow your hotel business? We step in to manage operations, improve performance, and drive revenue — with a shared success approach that ensures we grow together. Low-risk. Performance-aligned. Results-focused.</p><div class="tags"><span class="tag">Revenue-Aligned Partnership</span><span class="tag">End-to-End Operations</span><span class="tag">Performance Growth</span><span class="tag">Cost Optimization</span></div></div></div>
@@ -1181,23 +1184,40 @@ footer { border-top: 1px solid var(--card-border); padding: 56px 64px 36px; back
 </footer>
 
 <script>
-/* ─── Custom Cursor (desktop / pointer device only) ─── */
 const isTouch = () => window.matchMedia('(hover: none)').matches;
+
 if (!isTouch()) {
-  const cur = document.getElementById('cur'), crr = document.getElementById('crr');
+  const cur = document.getElementById('cur');
+  const crr = document.getElementById('crr');
+
   let mx = 0, my = 0, rx = 0, ry = 0;
+
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+    mx = e.clientX;
+    my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top = my + 'px';
   });
-  (function aR() {
-    rx += (mx - rx) * .12; ry += (my - ry) * .12;
-    crr.style.left = rx + 'px'; crr.style.top = ry + 'px';
-    requestAnimationFrame(aR);
+
+  (function animate() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    crr.style.left = rx + 'px';
+    crr.style.top = ry + 'px';
+    requestAnimationFrame(animate);
   })();
-  document.querySelectorAll('a,button,input,select,textarea,.vc,.si,.fc,.oc,.citm').forEach(el => {
-    el.addEventListener('mouseenter', () => { cur.classList.add('big'); crr.classList.add('big'); });
-    el.addEventListener('mouseleave', () => { cur.classList.remove('big'); crr.classList.remove('big'); });
+
+  /* Hide custom cursor on inputs */
+  document.querySelectorAll('input, textarea, [contenteditable="true"]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cur.style.opacity = '0';
+      crr.style.opacity = '0';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      cur.style.opacity = '1';
+      crr.style.opacity = '1';
+    });
   });
 }
 

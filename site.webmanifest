@@ -1,0 +1,21 @@
+{
+  "name": "Aishveenas Damore Group",
+  "short_name": "Aishveenas D'amore",
+  "description": "A multi-vertical enterprise spanning flagship cafés, hotel management, website development, digital marketing, lead generation and events.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#070706",
+  "theme_color": "#C9A84C",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

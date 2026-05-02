@@ -1,0 +1,27 @@
+# robots.txt — Aishveenas Damore Group
+# https://aishveenasdamore.com/robots.txt
+#
+# HOW TO USE
+# ══════════
+# Place this file at your website root so it is accessible at:
+# https://aishveenasdamore.com/robots.txt
+#
+# This file tells search engine crawlers which pages they can and cannot index.
+# The current configuration allows all crawlers full access to the entire site.
+
+# Allow all crawlers to access everything
+User-agent: *
+Allow: /
+
+# Point crawlers to the sitemap
+Sitemap: https://aishveenasdamore.com/sitemap.xml
+
+# ══════════════════════════════════════════════════════
+# OPTIONAL: Block specific paths (uncomment if needed)
+# ══════════════════════════════════════════════════════
+# If you later add admin panels, staging areas, or private
+# pages, block them like this:
+#
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /staging/

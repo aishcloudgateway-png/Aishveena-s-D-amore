@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://aishveenasdamore.com/</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!--
+    HOW TO USE THIS SITEMAP
+    ═══════════════════════
+    1. Place this file at your website root: https://aishveenasdamore.com/sitemap.xml
+    2. Submit it in Google Search Console:
+       → search.google.com/search-console → Sitemaps → Enter "sitemap.xml" → Submit
+    3. Update <lastmod> whenever you make significant changes to the page.
+
+    Since this is a single-page website (all sections are anchors on one page),
+    only the root URL is needed. If you add separate pages in the future
+    (e.g. /blog, /services, /contact), add them as new <url> entries below.
+
+    EXAMPLE for future pages:
+    <url>
+      <loc>https://aishveenasdamore.com/blog</loc>
+      <lastmod>2026-01-01</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  -->
+
+</urlset>

@@ -824,6 +824,34 @@ footer { border-top: 1px solid var(--card-border); padding: 56px 64px 36px; back
   .oc:hover { transform: none; }
   .citm:hover { transform: none; }
 }
+
+/* Desktop + Android hover */
+@media (hover: hover) {
+  .btn:hover {
+    background: black;
+    color: white;
+    transform: scale(1.05);
+    transition: 0.2s ease;
+  }
+}
+
+/* iOS / touch devices → simulate hover on tap */
+@media (hover: none) {
+  .btn {
+    transition: 0.2s ease;
+  }
+
+  .btn:active {
+    background: black;
+    color: white;
+    transform: scale(1.05);
+  }
+}
+
+.btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 </style>
 </head>
 <body>
